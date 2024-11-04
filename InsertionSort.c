@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <time.h>
 
-void InsertionSort(int arr[], int n) {
+void InsertionSort(int v[], int n) {
     for (int i = 1; i < n; ++i) {
-        int key = arr[i];
+        int key = v[i];
         int j = i - 1;
-        while (j >= 0 && key < arr[j]) {
-            arr[j + 1] = arr[j];
+        while (j >= 0 && key < v[j]) {
+            v[j + 1] = v[j];
             --j;
         }
-        arr[j + 1] = key;
+        v[j + 1] = key;
     }
 }
 
@@ -19,24 +19,24 @@ int main() {
     printf("Digite o tamanho do vetor: ");
     scanf("%d", &n);
 
-    int *arr = (int *)malloc(n * sizeof(int));
-    if (arr == NULL) {
+    int *v = (int *)malloc(n * sizeof(int));
+    if (v == NULL) {
         printf("Falha de memória!\n");
         return 1;
     }
 
     srand(time(NULL));
     for (int i = 0; i < n; i++) {
-        arr[i] = rand() % 10000;
+        v[i] = rand() % 10000;
     }
 
     clock_t start = clock();
-    InsertionSort(arr, n);
+    InsertionSort(v, n);
     clock_t end = clock();
 
     double exec_time = (double)(end - start) * 1000.0 / CLOCKS_PER_SEC;
     printf("Tempo de execução: %.2f ms\n", exec_time);
 
-    free(arr);
+    free(v);
     return 0;
 }
