@@ -14,6 +14,30 @@ void BubbleSort(int v[], int tam) {
     }
 }
 
+void BubbleCrescente(int v[], int tam) {
+    for (int i = 0; i < tam - 1; i++) {
+        for (int j = 0; j < tam - i - 1; j++) {
+            if (v[j] > v[j + 1]) {
+                int temp = v[j];
+                v[j] = v[j + 1];
+                v[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void BubbleDecrescente(int v[], int tam) {
+    for (int i = 0; i < tam - 1; i++) {
+        for (int j = 0; j < tam - i - 1; j++) {
+            if (v[j] < v[j + 1]) {
+                int temp = v[j];
+                v[j] = v[j + 1];
+                v[j + 1] = temp;
+            }
+        }
+    }
+}
+
 int main() {
     int tam;
     printf("Digite o tamanho do vetor: ");
@@ -35,8 +59,21 @@ int main() {
     clock_t end = clock();
 
     double exec_time = (double)(end - start) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Tempo de execução: %.2f ms\n", exec_time);
+    printf("Tempo de execução do BubbleSort: %.2f ms\n", exec_time);
+
+    start = clock();
+    BubbleCrescente(v, tam);
+    end = clock();
+    exec_time = (double)(end - start) * 1000.0 / CLOCKS_PER_SEC;
+    printf("Tempo de execução para ordenar em ordem crescente: %.2f ms\n", exec_time);
+
+    start = clock();
+    BubbleDecrescente(v, tam);
+    end = clock();
+    exec_time = (double)(end - start) * 1000.0 / CLOCKS_PER_SEC;
+    printf("Tempo de execução para ordenar em ordem decrescente: %.2f ms\n", exec_time);
 
     free(v);
     return 0;
 }
+
