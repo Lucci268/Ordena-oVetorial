@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-void InsertionSort(int v[], int n) {
-    for (int i = 1; i < n; ++i) {
+void InsertionSort(int v[], int tam) {
+    for (int i = 1; i < tam; ++i) {
         int key = v[i];
         int j = i - 1;
         while (j >= 0 && key < v[j]) {
@@ -15,23 +15,23 @@ void InsertionSort(int v[], int n) {
 }
 
 int main() {
-    int n;
+    int tam;
     printf("Digite o tamanho do vetor: ");
-    scanf("%d", &n);
+    scanf("%d", &tam);
 
-    int *v = (int *)malloc(n * sizeof(int));
+    int *v = (int *)malloc(tam * sizeof(int));
     if (v == NULL) {
         printf("Falha de memória!\n");
         return 1;
     }
 
     srand(time(NULL));
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < tam; i++) {
         v[i] = rand() % 10000;
     }
 
     clock_t start = clock();
-    InsertionSort(v, n);
+    InsertionSort(v, tam);
     clock_t end = clock();
 
     double exec_time = (double)(end - start) * 1000.0 / CLOCKS_PER_SEC;
